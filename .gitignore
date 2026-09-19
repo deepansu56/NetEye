@@ -1,0 +1,36 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# ---- Node / 前端构建产物 ----
+node_modules/
+web/dist/
+
+# ---- 运行期数据（本机私有，不入库） ----
+data/
+ProgramData/
+*.pcap
+*.db
+*.sqlite*
+*.log
+
+# ---- 操作系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# ---- 项目私有记忆（不入库） ----
+.workbuddy/
+
+# 保留安装包内置的 Npcap 安装器
+!installer/npcap/npcap-1.89.exe
+
+# Vite 构建缓存
+*.timestamp-*.mjs
+
+# 发布打包产物
+release/
