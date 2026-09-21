@@ -14,6 +14,16 @@ from typing import Any, Callable, Deque, Dict, List, Optional, Tuple
 from ..core.config import CAPTURE_DIR, settings
 from ..core.models import InterfaceInfo
 
+from ..filters.display_filter import compile_filter
+from ..parser import tree
+from ..parser.dissect import PacketRecord, detail, parse
+from ..stats.aggregator import Aggregator
+from ..storage import db, pcapio
+from .base import LINK_ETHERNET, LINK_RAW
+from .raw_engine import RawSocketEngine
+from .scapy_engine import ScapyEngine
+
+
 _KNOWN_EXTS = (".pcap", ".pcapng", ".cap", ".json", ".csv")
 
 
@@ -28,14 +38,6 @@ def _ensure_ext(filename: str, fmt: str) -> str:
     if name.lower().endswith(_KNOWN_EXTS):
         return name
     return f"{name}.{fmt}"
-from ..filters.display_filter import compile_filter
-from ..parser import tree
-from ..parser.dissect import PacketRecord, detail, parse
-from ..stats.aggregator import Aggregator
-from ..storage import db, pcapio
-from .base import LINK_ETHERNET, LINK_RAW
-from .raw_engine import RawSocketEngine
-from .scapy_engine import ScapyEngine
 
 
 class CaptureManager:
